@@ -6,6 +6,7 @@
 package com.cours.revisions.main;
 
 import com.cours.revisions.singletons.AbstractStatisticSingleton;
+import com.cours.revisions.singletons.JsonStatisticSingleton;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -21,6 +22,9 @@ public class MainRevisions {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        AbstractStatisticSingleton mySingleton = null;
+        AbstractStatisticSingleton mySingleton;
+
+        mySingleton = JsonStatisticSingleton.getInstance();
+
     }
 }
