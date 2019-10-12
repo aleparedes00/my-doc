@@ -21,12 +21,17 @@ import java.io.Reader;
  */
 public class JsonStatisticSingleton extends AbstractStatisticSingleton {
 
-    final String personnesJsonPathFile = "personnesJson.json";
-    final String personnesKey = "personnes";
+    private final String personnesJsonPathFile = "personnesJson.json";
+    private final String personnesKey = "people";
 
-    final String idKey = "id";
-    final String nameKey = "prenom";
-    final String lasNameKey = "nom";
+    private final String idKey = "id";
+    private final String nameKey = "prenom";
+    private final String lasNameKey = "nom";
+    private final String weightKey = "poids";
+    private final String highKey = "taille";
+    private final String addressKey = "rue";
+    private final String cityKey = "ville";
+    private final String zipCodeKey = "codePostal";
 
 
 
@@ -43,8 +48,17 @@ public class JsonStatisticSingleton extends AbstractStatisticSingleton {
     }
 
     public Personne createPersonneWithFileObject(JSONObject jsonObjectPerson) {
-        System.out.println(jsonObjectPerson.toJSONString());
-        return null;
+        return new Personne(
+                ((Long) jsonObjectPerson.get(idKey)).intValue(),
+                ((String) jsonObjectPerson.get(nameKey)),
+                ((String) jsonObjectPerson.get(lasNameKey)),
+                ((Long) jsonObjectPerson.get(weightKey)).doubleValue(),
+                ((Long) jsonObjectPerson.get(highKey)).doubleValue(),
+                ((String) jsonObjectPerson.get(addressKey)),
+                ((String) jsonObjectPerson.get(cityKey)),
+                ((String) jsonObjectPerson.get(zipCodeKey))
+        );
+
     }
 
     @Override
@@ -56,11 +70,15 @@ public class JsonStatisticSingleton extends AbstractStatisticSingleton {
 
             JSONArray personnesArray = (JSONArray) parsedJson.get(personnesKey);
 
+            for (Object personneData : personnesArray){
+                people.add(createPersonneWithFileObject((JSONObject) personneData));
+            }
+
 
         } catch (ParseException | IOException e) {
             e.printStackTrace();
         }
-
+        computeStats();
 
     }
 
