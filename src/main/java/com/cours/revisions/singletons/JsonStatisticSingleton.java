@@ -22,7 +22,7 @@ import java.io.Reader;
 public class JsonStatisticSingleton extends AbstractStatisticSingleton {
 
     private final String personnesJsonPathFile = "personnesJson.json";
-    private final String personnesKey = "people";
+    private final String personnesKey = "personnes";
 
     private final String idKey = "id";
     private final String nameKey = "prenom";
@@ -36,7 +36,8 @@ public class JsonStatisticSingleton extends AbstractStatisticSingleton {
 
 
     private JsonStatisticSingleton() {
-
+        System.out.printf("coucou");
+        extractPersonnesDatas();
     }
 
     private static class LazyHolder {
@@ -58,7 +59,6 @@ public class JsonStatisticSingleton extends AbstractStatisticSingleton {
                 ((String) jsonObjectPerson.get(cityKey)),
                 ((String) jsonObjectPerson.get(zipCodeKey))
         );
-
     }
 
     @Override
@@ -73,7 +73,6 @@ public class JsonStatisticSingleton extends AbstractStatisticSingleton {
             for (Object personneData : personnesArray){
                 people.add(createPersonneWithFileObject((JSONObject) personneData));
             }
-
 
         } catch (ParseException | IOException e) {
             e.printStackTrace();

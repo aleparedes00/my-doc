@@ -6,6 +6,9 @@
 package com.cours.revisions.helper;
 
 import com.cours.revisions.entities.Personne;
+
+import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,29 +17,37 @@ import java.util.List;
  */
 public class PersonneHelper {
 
-    private static List<Personne> personnes = null;
+    public PersonneHelper(){}
+
+    private List<Personne> personnes = null;
 
     public List<Personne> createListPersonnes() {
-        return null;
+        return new ArrayList<>();
     }
 
-    public void addPersonne(Integer idPersonne, String prenom, String nom, Double poids, Double taille, String rue, String ville, String codePostal) {
-       
+    public void addPersonne(Integer idPersonne, String name, String lastName, Double weight, Double high, String address, String city, String zipCode) {
+        if (personnes == null){
+            personnes = createListPersonnes();
+        }
+        Personne personne = createPersonne(idPersonne, name, lastName, weight, high, address, city, zipCode);
+        personnes.add(personne);
     }
 
-    public Personne createPersonne(Integer idPersonne, String prenom, String nom, Double poids, Double taille, String rue, String ville, String codePostal) {
-       return null;
+    private Personne createPersonne(Integer idPersonne, String name, String lastName, Double weight, Double high, String address, String city, String zipCode) {
+       return new Personne(idPersonne, name, lastName, weight, high, address, city, zipCode);
     }
 
-    public List<Personne> createListPersonnesReflexive() {
-        return null;
-    }
+    public List<Personne> getPersonnes(){return personnes;}
 
-    public Personne addPersonneReflexive(Integer idPersonne, String prenom, String nom, Double poids, Double taille, String rue, String ville, String codePostal) {
-        return null;
-    }
-
-    public Personne createPersonneReflexive(Integer idPersonne, String prenom, String nom, Double poids, Double taille, String rue, String ville, String codePostal) {
-       return null;
-    }
+//    public List<Personne> createListPersonnesReflexive() {
+//        return null;
+//    }
+//
+//    public Personne addPersonneReflexive(Integer idPersonne, String prenom, String nom, Double poids, Double taille, String rue, String ville, String codePostal) {
+//        return null;
+//    }
+//
+//    public Personne createPersonneReflexive(Integer idPersonne, String prenom, String nom, Double poids, Double taille, String rue, String ville, String codePostal) {
+//       return null;
+//    }
 }
